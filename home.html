@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Home.css">
+
+</head>
+<body>
+    <div id='jsonData'></div>
+    <button onclick="Showdata()">Show Data</button>
+    <button onclick="Highlightconnectiontype()">Highlight connection type</button>
+    <script>
+     let  highlighttype=true;
+let jsonData=[
+  {
+    "createdAt": "2024-05-21T06:34:56.703Z",
+    "updatedAt": "2024-05-21T06:34:56.703Z",
+    "id": "07468bd9-f2e3-462f-8c33-5e8fb78f786b",
+    "createdBy": "saqlain",
+    "connection_type": "mysql",
+    "connection_name": "s_mysql_src",
+    "description": "MYSQL Source Connection",
+    "host_address": "138.2.0.105",
+    "username": "newuser",
+    "port_number": 3306,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "4788491396bf41589e74fa4fdcabd692:632a95b57a4775a7e3668ea5887fd944",
+    "pool_type": "source",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-23T01:57:43.821Z",
+    "updatedAt": "2024-05-23T01:57:43.821Z",
+    "id": "1e4fa429-f227-4adb-ad06-19943824f8fd",
+    "createdBy": "srinu",
+    "connection_type": "oracle",
+    "connection_name": "oracle_source",
+    "description": "test",
+    "host_address": "158.101.135.234",
+    "username": "tantor1",
+    "port_number": 1521,
+    "database_name": "orcl.subbf8ac35c2.kubernetes.oraclevcn.com",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "8d0c60d448e8a5de0d800de063d7ad83:88ed1d628160294d02031faa6e547024",
+    "pool_type": "source",
+    "project": "srinu",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-23T05:32:56.435Z",
+    "updatedAt": "2024-05-23T05:32:56.435Z",
+    "id": "23c97611-4807-44b3-9923-5e7f4d71e89e",
+    "createdBy": "saqlain",
+    "connection_type": "oracle",
+    "connection_name": "s_oracle_target",
+    "description": "Oracle target",
+    "host_address": "158.101.135.234",
+    "username": "tantor1",
+    "port_number": 1521,
+    "database_name": "orcl.subbf8ac35c2.kubernetes.oraclevcn.com",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "d5e88167b1956bba0216449e54905c8d:e357ddb0901360cd9ebffa6943e096c2",
+    "pool_type": "target",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-22T12:21:13.941Z",
+    "updatedAt": "2024-05-22T12:21:13.941Z",
+    "id": "3557585a-6b76-4bc0-97d3-74be4c55bf3a",
+    "createdBy": "saqlain",
+    "connection_type": "oracle",
+    "connection_name": "orcl_source2",
+    "description": "source",
+    "host_address": "158.101.135.234",
+    "username": "tantor1",
+    "port_number": 1521,
+    "database_name": "orcl.subbf8ac35c2.kubernetes.oraclevcn.com",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "42b8b1db1a548049a56cea0460672315:c50b294c6febe252a8f14856daf37769",
+    "pool_type": "source",
+    "project": "none",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:36:15.524Z",
+    "updatedAt": "2024-05-21T06:36:15.524Z",
+    "id": "40ac499d-c5e4-44b7-8174-1bd9b5367276",
+    "createdBy": "saqlain",
+    "connection_type": "postgres",
+    "connection_name": "s_posgres_src",
+    "description": "Postgres SQL Source Connection",
+    "host_address": "158.101.135.234",
+    "username": "postgres",
+    "port_number": 5432,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "0a5668186710247c48333d776448b5cc:a8ca22c2b1bffd505ec8962e3f9368dc",
+    "pool_type": "source",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:53:02.474Z",
+    "updatedAt": "2024-05-21T06:53:02.474Z",
+    "id": "468dea2c-e4db-4eee-ac99-b18c7901f7ec",
+    "createdBy": "saqlain",
+    "connection_type": "db2",
+    "connection_name": "s_db2_target",
+    "description": "IBM DB2 Target",
+    "host_address": "158.101.135.234",
+    "username": "DB2INSTL",
+    "port_number": 25010,
+    "database_name": "DB2",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "97dc5e1314577c609455cd95c1b662ba:8969fff267060fd24af630cbd8b4ddb2",
+    "pool_type": "target",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:00:28.736Z",
+    "updatedAt": "2024-05-21T06:00:28.736Z",
+    "id": "50348fcb-b87b-474a-b2a8-efbce500b2b8",
+    "createdBy": "sorv",
+    "connection_type": "mssql",
+    "connection_name": "mssql_source",
+    "description": "mssql",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "430ddec267a54a61df82d726f46f8990:bf15f02b0a0f9f302d88c422656f69a7",
+    "pool_type": "source",
+    "project": "project_1",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T19:25:32.139Z",
+    "updatedAt": "2024-05-21T19:25:32.139Z",
+    "id": "55574b9c-ce1e-44b4-8cf3-1ea63dcc1fce",
+    "createdBy": "saqlain",
+    "connection_type": "mssql",
+    "connection_name": "mssql_source",
+    "description": "orcl",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "09678916286df8fb0ab00a235fa73b01:3c05324852837e97c84b9e87a020c1c3",
+    "pool_type": "source",
+    "project": "sorv_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-23T05:31:38.242Z",
+    "updatedAt": "2024-05-23T05:31:38.242Z",
+    "id": "6912a678-718c-426f-b64c-88218cbb5684",
+    "createdBy": "saqlain",
+    "connection_type": "oracle",
+    "connection_name": "s_oracle_src",
+    "description": "oracle source",
+    "host_address": "158.101.135.234",
+    "username": "tantor1",
+    "port_number": 1521,
+    "database_name": "orcl.subbf8ac35c2.kubernetes.oraclevcn.com",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "344668de5cf34a17676cbc645392f953:3f0eeb89922338326728719bcb3b56ed",
+    "pool_type": "source",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:22:26.016Z",
+    "updatedAt": "2024-05-21T06:22:26.016Z",
+    "id": "95ac50d7-8a48-4def-9274-539771e70f31",
+    "createdBy": "saqlain",
+    "connection_type": "mssql",
+    "connection_name": "s_mssql_src",
+    "description": "MS SQL Source Connection",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "4a0c8c7545f25ce3a14bbad30fdfd08d:52fe72afa2eb2b66ef4be9c2af10eee7",
+    "pool_type": "source",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T07:02:36.564Z",
+    "updatedAt": "2024-05-21T07:02:36.564Z",
+    "id": "98f3b8f4-b331-4839-90c0-0d6999f8b199",
+    "createdBy": "saqlain",
+    "connection_type": "postgres",
+    "connection_name": "s_postgres_target",
+    "description": "postgres target",
+    "host_address": "158.101.135.234",
+    "username": "postgres",
+    "port_number": 5432,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "2e1b8e71e230f4f205604e8cbd1b11af:5b9366db5d515c593345c5220fb98eaa",
+    "pool_type": "target",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-22T12:29:10.767Z",
+    "updatedAt": "2024-05-22T12:29:10.767Z",
+    "id": "9dd9ce77-43b0-4445-bfd7-e410263d9c62",
+    "createdBy": "saqlain",
+    "connection_type": "mssql",
+    "connection_name": "mssql_target",
+    "description": "target",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "9b45bf7226ad7e324773ef6522f7a4ef:64c43a3b1c08d5248f6438f5c87a66bd",
+    "pool_type": "target",
+    "project": "sorv_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-23T01:56:40.028Z",
+    "updatedAt": "2024-05-23T01:56:40.028Z",
+    "id": "9f927e2b-e649-453b-90d0-e5b4769fadc1",
+    "createdBy": "srinu",
+    "connection_type": "oracle",
+    "connection_name": "oracle_target",
+    "description": "test",
+    "host_address": "158.101.135.234",
+    "username": "tantor1",
+    "port_number": 1521,
+    "database_name": "orcl.subbf8ac35c2.kubernetes.oraclevcn.com",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "ea392431e6f93243b5a0be83ee471799:1b466888ccb3c7c26196e10518c5dd0a",
+    "pool_type": "target",
+    "project": "srinu",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:08:26.099Z",
+    "updatedAt": "2024-05-21T06:08:26.099Z",
+    "id": "abba3f32-4b02-4b3f-8462-98fb4c6fca46",
+    "createdBy": "sorv",
+    "connection_type": "mssql",
+    "connection_name": "mssql_source1",
+    "description": "mssql",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "fbb53db0ea495f4cd3f0af9faf8d40d7:31ff3aa9e9d822cb2187cd91294b34e8",
+    "pool_type": "source",
+    "project": "project_1",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T07:03:31.582Z",
+    "updatedAt": "2024-05-21T07:03:31.582Z",
+    "id": "c19daffa-d8b6-4975-bc01-90133f1e0049",
+    "createdBy": "saqlain",
+    "connection_type": "db2",
+    "connection_name": "s_db2_src",
+    "description": "IBM db2 source",
+    "host_address": "158.101.135.234",
+    "username": "DB2INSTL",
+    "port_number": 25010,
+    "database_name": "DB2",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "356f1f74bdcdc0f2cdbc9ca11ce0716a:8d76a442ddea720dbf1a7599f8d382dc",
+    "pool_type": "source",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:52:01.471Z",
+    "updatedAt": "2024-05-21T06:52:01.471Z",
+    "id": "f24f48c1-9013-41cd-8ac2-88487152d327",
+    "createdBy": "saqlain",
+    "connection_type": "mssql",
+    "connection_name": "s_mssql_target",
+    "description": "MS SQL Target",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": "",
+    "password": "69161947eed864a9243fa4239e03f295:c7de31e2304152021b94e02e6c362646",
+    "pool_type": "target",
+    "project": "saqlain_testing",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T06:02:34.073Z",
+    "updatedAt": "2024-05-21T06:02:34.073Z",
+    "id": "f4fb9cd6-d759-4ed0-bb3e-3141edb61c7c",
+    "createdBy": "sorv",
+    "connection_type": "mssql",
+    "connection_name": "mssql_target",
+    "description": "mssq",
+    "host_address": "158.101.135.234",
+    "username": "sa",
+    "port_number": 1433,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "d86ea4bfefef15815f08722471d00d3b:f2b0f6b27248912cafd2e21e306db5ab",
+    "pool_type": "target",
+    "project": "project_1",
+    "status": "active"
+  },
+  {
+    "createdAt": "2024-05-21T07:01:18.101Z",
+    "updatedAt": "2024-05-21T07:01:18.101Z",
+    "id": "fd3a7717-9c32-43d8-a4f3-ce4e81939308",
+    "createdBy": "saqlain",
+    "connection_type": "mysql",
+    "connection_name": "s_mysql_target",
+    "description": "mysql target",
+    "host_address": "138.2.0.105",
+    "username": "newuser",
+    "port_number": 3306,
+    "database_name": "tantor",
+    "schema_name": "",
+    "sourceSchema": null,
+    "password": "77f76e5eb6d16f7552f6676430ac0c8b:c7c6dc6c24057eb738cf24bee612d8ec",
+    "pool_type": "target",
+    "project": "saqlain_testing",
+    "status": "active"
+  }
+];
+function Showdata(){
+  const arr=["createdAt","updatedAt","id","createdBy","connection_type","connection_name","description",
+  "host_address","username","port_number","database_name", "schema_name","sourceSchema","password","pool_type","project","status"
+];
+    const arr1=jsonData.map(function(ele){
+        let str ='<tr>';
+          //for(const key in jsonData)
+          //  str+='</td>'+ele.key+'</td>';
+            str+='<td>'+ele.createdAt+'</td>';
+            str+='<td>'+ele.updatedAt+'</td>';
+            str+='<td>'+ele.id+'</td>';
+            str+='<td>'+ele.createdBy+'</td>';
+            str+='<td>'+ele.connection_type+'</td>';
+            str+='<td>'+ele.connection_name+'</td>';
+            str+='<td>'+ele.description+'</td>';
+            str+='<td>'+ele.host_address+'</td>';
+            str+='<td>'+ele.username+'</td>';
+            str+='<td>'+Highlightconnectiontype(ele.port_number)+'</td>';
+            str+='<td>'+ele.database_name+'</td>';
+            str+='<td>'+ele.schema_name+'</td>';
+            str+='<td>'+ele.sourceSchema+'</td>';
+            str+='<td>'+ele.password+'</td>';
+            str+='<td>'+ele.pool_type+'</td>';
+            str+='<td>'+ele.project+'</td>';
+            str+='<td>'+ele.status+'</td>';
+           str+='</tr>';
+           return str;
+          
+    });
+    let header='<tr>';
+      for(let i=0;i<arr.length;i++){
+       // header+='<th>connection_name</th>';
+        //header+='<th>connection_type</th>';
+
+        header+='<th>'+arr[i]+'</th>'
+      }
+          header+='</tr>';
+           let html='<table>'+header+arr1.join('')+'</table>';
+                console.log(html);
+              let element=document.getElementById('jsonData');
+                element.innerHTML=html;
+}
+function Highlightconnectiontype(type){
+if(type =='oracle'&& highlight){
+ // return 'type';
+  //else
+ // return '';
+}
+function highlight(){
+  highlighttype=true;
+  Showdata();
+}
+
+}
+//function Showdata(data) {
+  
+ // if (typeof data !== 'object' || data === null) {
+  //  return 'Error: Invalid JSON data provided.';
+ // }
+
+  //const table = document.createElement('table');
+  //table.border = 1; 
+  //const headerRow = document.createElement('tr');
+ // table.appendChild(headerRow);
+
+  
+ // for (const key in data[0]) {
+  //  const headerCell = document.createElement('th');
+  //  headerCell.textContent = key;
+  //  headerRow.appendChild(headerCell);
+ // }
+
+  
+ // for (const item of data) {
+  //  const dataRow = document.createElement('tr');
+  //  table.appendChild(dataRow);
+
+  //  for (const key in item) {
+   //   const dataCell = document.createElement('td');
+    //  dataCell.textContent = item[key];
+   //   dataRow.appendChild(dataCell);
+   // }
+ // }
+
+ // return table;
+//}
+
+//const tableElement = Showdata(jsonData);
+//data.appendChild(tableElement);
+
+    </script>
+</body>
+</html>

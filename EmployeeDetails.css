@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+   /*background-color: #333;*/
+  }
+  
+  .topnav a {
+    float: left;
+    color:bold black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+   
+    color:black;
+  }
+  img{
+    width: 600px;
+    height: 500px;
+position: relative;
+left: 650px;
+bottom: 150px;
+
+  }
+  .showblue{
+    color:white;
+    background-color:red ;
+  }
+  .clearcolor{
+    color:black;
+    background-color:white;
+  }
+
+
+  

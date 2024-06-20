@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="EmployeeDetails.css">
+
+    </head>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+<div id='listnames'></div>
+<button onclick='shownames()'>Show name</button>
+<button onclick="hidenames()">hide name</button><br>
+<button onclick="SortAsc()">Ascending order</button>
+<button onclick="SortDesc()">Descending order</button>
+<button onclick="Showblue()">Change name style</button>
+<button onclick="clearcolor()">clear</button>
+
+
+<script>
+    const names=['Bob','Jeck','Anne','Cluster'];
+    function shownames(){
+const namesMap=names.map(function(name){
+    return '<li>'+name+'</li>';
+});
+let str='<ul>'+namesMap.join('')+'</ul';
+    let element=document.getElementById('listnames');
+    element.innerHTML=str;
+    }
+    function hidenames(){
+        let element=document.getElementById('listnames');
+        element.innerHTML='';
+    }
+    function SortAsc(){
+        names.sort(shownames);
+       shownames();
+    }
+   function SortnamesAsc(name1,name2){
+return name1.localcompare(name2);
+   }
+   function localcompare(str1){
+let element=document.getElementById('listnames');
+element.innerHTML=str1;
+
+
+   }
+   function Showblue(){
+
+        let element=document.getElementById('listnames');
+    element.className='showblue';
+    }
+   
+   function clearcolor(){
+    let ele=document.getElementById('listnames');
+    ele.className='';
+    
+   }
+   
+</script>
+
+</body>
+</html>
+
