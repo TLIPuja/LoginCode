@@ -14,7 +14,7 @@ public interface ComplaintDao {
    public void updateComplaintAssignee(Integer complaintId, String userName);
    public Complaints findComplaintById(Integer complaintId);
 
-   // boolean userHasOpenComplaints(int userId);
+    boolean userHasOpenComplaints(int userId);
 
 
 }

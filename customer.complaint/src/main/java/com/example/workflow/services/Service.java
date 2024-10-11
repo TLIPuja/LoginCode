@@ -46,8 +46,8 @@ public List<Users> getAllusers(){
     return userDao.findUserById(id).orElse(null);
     }
 
-//    public boolean getOpenComplaintsByUserId(int userId) {
-//        return complaintDao.userHasOpenComplaints(userId);
-//    }
+    public boolean getOpenComplaintsByUserId(int userId) {
+        return complaintDao.userHasOpenComplaints(userId);
+    }
 
 }

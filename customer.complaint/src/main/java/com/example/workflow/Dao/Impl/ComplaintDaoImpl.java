@@ -37,14 +37,14 @@ public class ComplaintDaoImpl implements ComplaintDao {
                 .getSingleResult();
    }
 
-//    @Override
-//    public boolean userHasOpenComplaints(int userId) {
-//        String jpql = "SELECT COUNT(c) FROM Complaints c WHERE c.assignee = :userId AND c.status = 'Open'";
-//        Query query = entityManager.createQuery(jpql);
-//        query.setParameter("userId", userId);
-//        Long count = (Long) query.getSingleResult();
-//        return count > 0;
-//    }
+    @Override
+    public boolean userHasOpenComplaints(int userId) {
+        String jpql = "SELECT COUNT(c) FROM Complaints c WHERE c.assignee = :userId AND c.status = 'Open'";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("userId", userId);
+        Long count = (Long) query.getSingleResult();
+        return count > 0;
+    }
 
 
 }

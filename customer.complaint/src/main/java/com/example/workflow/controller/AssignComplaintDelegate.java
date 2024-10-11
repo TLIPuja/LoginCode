@@ -45,9 +45,9 @@ public class AssignComplaintDelegate implements JavaDelegate {
        // if(complaint.getStatus()=="Open") {
 
 
-//        if (service.getOpenComplaintsByUserId(Integer.parseInt(selectedUser.getUser_id()))) {
-//            throw new RuntimeException("User is already assigned to an open complaint and cannot be assigned to another.");
-//        }
+        if (service.getOpenComplaintsByUserId(Integer.parseInt(selectedUser.getUser_id()))) {
+            throw new RuntimeException("User is already assigned to an open complaint and cannot be assigned to another.");
+        }
 
         if (complaint != null && selectedUser != null &&"Open".equals(complaint.getStatus())) {
                complaint.setAssignee(selectedUser.getUsername());
