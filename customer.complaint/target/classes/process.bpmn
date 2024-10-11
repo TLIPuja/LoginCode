@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.26.0">
+  <bpmn:process id="Process_1" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_01c892w</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="ServiceTask_1" name="Fetch Complaints" camunda:delegateExpression="${FetchOpenComplaintsDelegate}">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_01c892w</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fucsm9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1tb8eng" name="Select User and Complaint">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="selectedUserId" label="Select User" type="string" />
+          <camunda:formField id="complaintId" label="Select Complaint" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0dx9ao6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bzx95j</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_07xo8qv" name="Assign complaint to user" camunda:delegateExpression="${assignComplaintDelegate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="selectedUserId">${selectedUserId}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bzx95j</bpmn:incoming>
+      <bpmn:outgoing>Flow_11q3386</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0ie4bk5">
+      <bpmn:incoming>Flow_11q3386</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_11q3386" sourceRef="Activity_07xo8qv" targetRef="Event_0ie4bk5" />
+    <bpmn:sequenceFlow id="Flow_01c892w" sourceRef="StartEvent_1" targetRef="ServiceTask_1" />
+    <bpmn:userTask id="Activity_1btm7gw" name="Display complaints and user list">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="openComplaints" label="open Complaints" type="string">
+            <camunda:properties />
+            <camunda:validation />
+          </camunda:formField>
+          <camunda:formField id="userListJson" label="Users List" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="openComplaints">${openComplaints}</camunda:outputParameter>
+          <camunda:outputParameter name="userListJson">${userListJson}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1fucsm9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dx9ao6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1fucsm9" sourceRef="ServiceTask_1" targetRef="Activity_1btm7gw" />
+    <bpmn:sequenceFlow id="Flow_0dx9ao6" sourceRef="Activity_1btm7gw" targetRef="Activity_1tb8eng" />
+    <bpmn:sequenceFlow id="Flow_1bzx95j" sourceRef="Activity_1tb8eng" targetRef="Activity_07xo8qv" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="92" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="158" y="135" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1_di" bpmnElement="ServiceTask_1">
+        <dc:Bounds x="290" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0mg7lqk" bpmnElement="Activity_1btm7gw">
+        <dc:Bounds x="510" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1ygxxwy" bpmnElement="Activity_1tb8eng">
+        <dc:Bounds x="690" y="80" width="120" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07bpswb_di" bpmnElement="Activity_07xo8qv">
+        <dc:Bounds x="880" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ie4bk5_di" bpmnElement="Event_0ie4bk5">
+        <dc:Bounds x="1072" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01c892w_di" bpmnElement="Flow_01c892w">
+        <di:waypoint x="188" y="110" />
+        <di:waypoint x="239" y="110" />
+        <di:waypoint x="239" y="120" />
+        <di:waypoint x="290" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fucsm9_di" bpmnElement="Flow_1fucsm9">
+        <di:waypoint x="390" y="120" />
+        <di:waypoint x="510" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dx9ao6_di" bpmnElement="Flow_0dx9ao6">
+        <di:waypoint x="610" y="120" />
+        <di:waypoint x="690" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bzx95j_di" bpmnElement="Flow_1bzx95j">
+        <di:waypoint x="810" y="120" />
+        <di:waypoint x="880" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11q3386_di" bpmnElement="Flow_11q3386">
+        <di:waypoint x="980" y="120" />
+        <di:waypoint x="1072" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
