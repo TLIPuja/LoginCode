@@ -2,9 +2,9 @@ package com.example.workflow.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+@Entity
 @Table(name = "user")
 @Data
-@Entity
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

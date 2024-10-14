@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface UserDao {
     List<Users> findAllUsers();
-    public Optional findUserById(Integer id) ;
+    public Users findUserById(Integer id) ;
 
 }

@@ -81,9 +81,7 @@
         <dc:Bounds x="1072" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_01c892w_di" bpmnElement="Flow_01c892w">
-        <di:waypoint x="188" y="110" />
-        <di:waypoint x="239" y="110" />
-        <di:waypoint x="239" y="120" />
+        <di:waypoint x="187" y="116" />
         <di:waypoint x="290" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fucsm9_di" bpmnElement="Flow_1fucsm9">

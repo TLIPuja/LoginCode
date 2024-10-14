@@ -4,50 +4,68 @@ import com.example.workflow.Dao.ComplaintDao;
 import com.example.workflow.Dao.UserDao;
 import com.example.workflow.model.Complaints;
 import com.example.workflow.model.Users;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @org.springframework.stereotype.Service
 public class Service {
-       @Autowired
-     private ComplaintDao complaintDao;
-@Autowired
-private UserDao userDao;
-////    public List<Complaints> getAllComplaints() {
+    @Autowired
+    private ComplaintDao complaintDao;
+    @Autowired
+    private UserDao userDao;
+
+    ////    public List<Complaints> getAllComplaints() {
 //        return dao.findAll();
 //    }
 //
 //    public Complaints getComplaintById(Long id) {
 //        return dao.findById(id).orElse(null);
 //    }
-public List<Complaints> getAllOpenComplaints() {
-    return complaintDao.findBystatus("Open");
-    //return dao.findAll();
-}
-
-
-public List<Users> getAllusers(){
-    return userDao.findAllUsers();
-}
-
-    public Complaints getComplaintById(Integer complaintId) {
-        return complaintDao.findComplaintById(complaintId);
-               // .orElseThrow(() -> new NoSuchElementException("No complaint found with ID: " + complaintId));
-       // return Complaints.getStatus().equalsIgnoreCase("Open");
+    @Transactional
+    public List<Complaints> getAllOpenComplaints() {
+        return complaintDao.findBystatus("Open");
+        //return dao.findAll();
     }
+
+@Transactional
+    public List<Users> getAllusers() {
+        return userDao.findAllUsers();
+    }
+@Transactional
+    public Complaints getComplaintById(Integer complaintId) {
+
+            return complaintDao.findComplaintById(complaintId);
+
+        //.orElse(() -> new NoSuchElementException("No complaint found with ID: " + complaintId));
+        // return Complaints.getStatus().equalsIgnoreCase("Open");
+    }
+@Transactional
     public void updateComplaint(Integer complaintId, String userName) {
-     //   complaintsDao.save(complaint);
+        //   complaintsDao.save(complaint);
+
         complaintDao.updateComplaintAssignee(complaintId, userName);
 
     }
+@Transactional
     public Object findUserById(Integer id) {
-
-    return userDao.findUserById(id).orElse(null);
+    return userDao.findUserById(id);
+    }
+    @Transactional
+    public boolean getOpenComplaintsByUserId(String username)  {
+         return complaintDao.userHasOpenComplaints(username);
     }
 
-    public boolean getOpenComplaintsByUserId(int userId) {
-        return complaintDao.userHasOpenComplaints(userId);
-    }
-
+//    public void assignComplaint(int complaintId, int userId) throws Exception {
+//        // Check if the user is already assigned to an open complaint
+//        boolean isAssigned = complaintDao.userHasOpenComplaints(userId);
+//        if (isAssigned) {
+//            throw new Exception("User is already assigned to an open complaint.");
+//        }
+//      return complaintDao.assignComplaintToUser(complaintId,userId);
+//
+//
+//    }
 }

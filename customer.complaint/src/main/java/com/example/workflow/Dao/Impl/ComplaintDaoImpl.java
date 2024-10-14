@@ -4,6 +4,7 @@ import com.example.workflow.Dao.ComplaintDao;
 import com.example.workflow.model.Complaints;
 import com.example.workflow.model.Users;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,20 +32,29 @@ public class ComplaintDaoImpl implements ComplaintDao {
     }
     @Override
    public Complaints findComplaintById(Integer complaintId){
-        String query = "SELECT c FROM Complaints c WHERE c.id = :complaintId";
-        return entityManager.createQuery(query, Complaints.class)
-                .setParameter("complaintId", complaintId)
-                .getSingleResult();
+
+            String query = "SELECT c FROM Complaints c WHERE c.id = :complaintId";
+            return entityManager.createQuery(query, Complaints.class)
+                    .setParameter("complaintId", complaintId)
+                    .getSingleResult();
+
+
    }
 
     @Override
-    public boolean userHasOpenComplaints(int userId) {
-        String jpql = "SELECT COUNT(c) FROM Complaints c WHERE c.assignee = :userId AND c.status = 'Open'";
+    public boolean userHasOpenComplaints(String username) {
+        String jpql = "SELECT COUNT(c) FROM Complaints c WHERE c.assignee = :username AND c.status = 'Open'";
         Query query = entityManager.createQuery(jpql);
-        query.setParameter("userId", userId);
+        query.setParameter("username",username);
         Long count = (Long) query.getSingleResult();
+        System.out.println(count);
         return count > 0;
     }
+
+
+
+
+
 
 
 }

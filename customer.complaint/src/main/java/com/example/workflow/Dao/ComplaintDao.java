@@ -14,7 +14,11 @@ public interface ComplaintDao {
    public void updateComplaintAssignee(Integer complaintId, String userName);
    public Complaints findComplaintById(Integer complaintId);
 
-    boolean userHasOpenComplaints(int userId);
+    public boolean userHasOpenComplaints(String username);
+   // public void assignComplaintToUser(int complaintId, String assignee) ;
+
+
+
 
 
 }

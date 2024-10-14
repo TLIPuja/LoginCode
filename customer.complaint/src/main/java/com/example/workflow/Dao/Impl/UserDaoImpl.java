@@ -22,15 +22,17 @@ public class UserDaoImpl implements UserDao {
         return query.getResultList();
     }
     @Override
-    public Optional findUserById(Integer id) {
+    public Users findUserById(Integer id) {
+
         String query = "SELECT u FROM Users u WHERE u.user_id = :id";
-        try {
-            Users user = entityManager.createQuery(query, Users.class)
-                    .setParameter("id", id)
-                    .getSingleResult();
-            return Optional.of(user);
-        } catch (NoResultException e) {
-            return Optional.empty();  // Return empty Optional if no result is found
-        }
+        // try {
+        return entityManager.createQuery(query, Users.class)
+                .setParameter("id", id)
+                .getSingleResult();
+        // return Optional.of(user);
+        // } catch (NoResultException e) {
+        //  return Optional.empty();  // Return empty Optional if no result is found
+        // }
+        //}
     }
 }
