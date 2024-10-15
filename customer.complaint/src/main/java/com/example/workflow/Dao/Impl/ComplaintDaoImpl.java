@@ -32,13 +32,16 @@ public class ComplaintDaoImpl implements ComplaintDao {
     }
     @Override
    public Complaints findComplaintById(Integer complaintId){
+try {
+    String query = "SELECT c FROM Complaints c WHERE c.id = :complaintId";
+    return entityManager.createQuery(query, Complaints.class)
+            .setParameter("complaintId", complaintId)
+            .getSingleResult();
+}
+catch (NoResultException e) {
 
-            String query = "SELECT c FROM Complaints c WHERE c.id = :complaintId";
-            return entityManager.createQuery(query, Complaints.class)
-                    .setParameter("complaintId", complaintId)
-                    .getSingleResult();
-
-
+        throw new RuntimeException("Complaint with ID: " + complaintId + " does not exist.");
+    }
    }
 
     @Override

@@ -35,6 +35,7 @@ public class AssignComplaintDelegate implements JavaDelegate {
         //Users selectedUser = service.findUserById(Integer.parseInt("selectedUserId"));
         //Users selectedUser= (Users) service.findUserById(Integer.parseInt("selectedUserId"));
         Complaints complaint = service.getComplaintById(Integer.parseInt(complaintId));
+
         Users selectedUser = (Users) service.findUserById(Integer.parseInt(selectedUserId));
        // if(complaint.getStatus()=="Open") {
 //       if (service.getOpenComplaintsByUserId(Integer.parseInt(selectedUser.getUser_id()))) {
