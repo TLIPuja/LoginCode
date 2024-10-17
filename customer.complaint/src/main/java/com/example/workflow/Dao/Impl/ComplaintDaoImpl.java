@@ -29,6 +29,8 @@ public class ComplaintDaoImpl implements ComplaintDao {
                 .setParameter("userName", userName)
                 .setParameter("complaintId", complaintId)
                 .executeUpdate();
+
+
     }
     @Override
    public Complaints findComplaintById(Integer complaintId){

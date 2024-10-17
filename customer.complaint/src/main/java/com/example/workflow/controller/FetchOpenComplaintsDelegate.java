@@ -28,12 +28,12 @@ private Service service;
        execution.setVariable("openComplaints", Listjson);
             // Fetch all users from the database
             List<Users> users = service.getAllusers();
-            try {
+          //  try {
                 String usersJson = objectMapper.writeValueAsString(users);
                 execution.setVariable("userListJson", usersJson);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Failed to convert user list to JSON");
+           // } catch (JsonProcessingException e) {
+             //   e.printStackTrace();
+             //   throw new RuntimeException("Failed to convert user list to JSON");
             }
 
 
@@ -58,6 +58,6 @@ private Service service;
 //        execution.setVariable("openComplaints", complaintDescriptions);
 //    }
 
-}
+
 
 

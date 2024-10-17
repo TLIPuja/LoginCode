@@ -68,4 +68,17 @@ public class Service {
 //
 //
 //    }
+//public void closeComplaint(String complaintId) {
+//    // Mark the complaint as closed
+//   Complaints complaint = complaintDao.findComplaintById(Integer.valueOf(complaintId));
+////    complaint.setStatus("Closed");
+////    complaintDao.updateComplaintAssignee(complaint.getComplaint_id(),complaint.getCustomer_name());
+//    if ( complaint!= null && "Open".equals(complaint.getStatus())) {
+//        // Update the complaint status to "Unassigned"
+//        complaint.setStatus("Close");
+//        complaint.setAssignee(null); // Clear the assignee
+//        complaintService.updateComplaint(complaint.getComplaint_id(), complaint.getCustomer_name());
+//       // complaint.setAssignee(null);
+//    }
 }
+

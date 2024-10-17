@@ -37,26 +37,26 @@ public class AssignComplaintDelegate implements JavaDelegate {
         Complaints complaint = service.getComplaintById(Integer.parseInt(complaintId));
 
         Users selectedUser = (Users) service.findUserById(Integer.parseInt(selectedUserId));
-       // if(complaint.getStatus()=="Open") {
+        // if(complaint.getStatus()=="Open") {
 //       if (service.getOpenComplaintsByUserId(Integer.parseInt(selectedUser.getUser_id()))) {
 //throw ()
 //        }
 
         if (complaint != null && selectedUser != null &&"Open".equals(complaint.getStatus())) {
-           boolean getOpenComplaintsByUserId = service.getOpenComplaintsByUserId(selectedUser.getUsername());
-         //  System.out.println("User ID: " + selectedUserId + " is assigned to open complaints: " + getOpenComplaintsByUserId);
+            boolean getOpenComplaintsByUserId = service.getOpenComplaintsByUserId(selectedUser.getUsername());
+            //  System.out.println("User ID: " + selectedUserId + " is assigned to open complaints: " + getOpenComplaintsByUserId);
             if (getOpenComplaintsByUserId) {
                 throw new RuntimeException("User is already assigned to an open complaint and cannot be assigned to another.");
             }
 
             complaint.setAssignee(selectedUser.getUsername());
-               service.updateComplaint(Integer.parseInt(complaintId),
-                       selectedUser.getUsername());
+            service.updateComplaint(Integer.parseInt(complaintId),
+                    selectedUser.getUsername());
 
-               // Set the updated complaint as a process variable in Camunda
-               execution.setVariable("updatedComplaint", complaint);
-           }
-      // }
+            // Set the updated complaint as a process variable in Camunda
+            execution.setVariable("updatedComplaint", complaint);
+        }
+        // }
         else {
             throw new RuntimeException("You can not assign a user for close complaints");
         }
