@@ -21,16 +21,20 @@ private Service service;
     public void execute(DelegateExecution execution) throws Exception {
         List<Complaints> openComplaints = service.getAllOpenComplaints();
         String Listjson =objectMapper.writeValueAsString(openComplaints);
+        execution.setVariable("openComplaints", Listjson);
+        List<Users> users = service.getAllusers();
+        String usersJson = objectMapper.writeValueAsString(users);
+        execution.setVariable("userListJson", usersJson);
+
 
 //        List<String> complaintDescriptions = openComplaints.stream()
 //                .map(c -> "ID: " + c.getComplaint_id() + "Name: " + c.getCustomer_name() + "Email: " + c.getCustomer_email() + "Description: " + c.getComplaint_description() + "Type: " + c.getComplaint_type() + "Status: " + c.getStatus() + "Priority: " + c.getPriority()+"\n")
 //                .collect(Collectors.toList());
-       execution.setVariable("openComplaints", Listjson);
             // Fetch all users from the database
-            List<Users> users = service.getAllusers();
+
           //  try {
-                String usersJson = objectMapper.writeValueAsString(users);
-                execution.setVariable("userListJson", usersJson);
+
+
            // } catch (JsonProcessingException e) {
              //   e.printStackTrace();
              //   throw new RuntimeException("Failed to convert user list to JSON");

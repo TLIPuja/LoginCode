@@ -18,23 +18,22 @@ public class CloseComplaintDelegate implements JavaDelegate {
         String complaintId = (String) execution.getVariable("complaintId");
 
         // Mark complaint as closed
-       // complaintService.closeComplaint(complaintId);
+        // complaintService.closeComplaint(complaintId);
         Complaints complaint = complaintService.getComplaintById(Integer.parseInt(complaintId));
+        String complaintStatus = (String) execution.getVariable("complaintStatus");
+        boolean closeCondition = "close".equalsIgnoreCase(complaintStatus);
 
-        String Closed = (String) execution.getVariable("complaintStatus");
-
-        if (complaint != null && "Open".equals(complaint.getStatus()) && Closed.equals("close")) {
-
+        if (complaint != null && "Open".equals(complaint.getStatus())) {
             // Update the complaint status to "Unassigned"
             complaint.setStatus("Close");
             complaintService.updateComplaint(complaint.getComplaint_id(), complaint.getCustomer_name());
             complaint.setAssignee(null); // Clear the assignee
-
-
         }
-       // complaint.setAssignee(null); // Clear the assignee
-       // complaintService.updateComplaint(complaint.getComplaint_id(), complaint.getCustomer_name());
-       // complaint.setAssignee(null); // Clear the assignee
+        execution.setVariable("closeCondition", closeCondition);
+
+        // complaint.setAssignee(null); // Clear the assignee
+        // complaintService.updateComplaint(complaint.getComplaint_id(), complaint.getCustomer_name());
+        // complaint.setAssignee(null); // Clear the assignee
 
 
 

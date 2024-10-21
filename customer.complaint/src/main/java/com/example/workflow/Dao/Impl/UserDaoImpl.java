@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<Users> findAllUsers() {
         // Use JPQL to fetch all complaints
-        String queryStr = "SELECT c FROM Complaints c";
+        String queryStr = "SELECT c FROM Users c";
         TypedQuery<Users> query = entityManager.createQuery(queryStr, Users.class);
         return query.getResultList();
     }
